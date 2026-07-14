@@ -1,24 +1,30 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import useAuthStore from '../store/useAuthStore' // 👈 스토어 불러오기
 import styles from './Auth.module.scss'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
-  // 🌟 선생님이 추가하신 핵심 기능! 페이지를 이동시켜주는 훅
   const navigate = useNavigate()
+  const { login } = useAuthStore() // 👈 스토어에서 로그인 기능 꺼내기!
 
-  const submitFun = (e) => {
+  const submitFun = async (e) => {
     e.preventDefault()
-    // 로그인 폼 제출 시 방명록 페이지로 강제 이동!
-    navigate('/guestbook')
+    
+    try {
+      // 👈 파이어베이스에 로그인 요청!
+      await login(email, password)
+      navigate('/guestbook') // 성공하면 방명록으로 이동
+    } catch (error) {
+      console.error("로그인 에러:", error)
+      alert('로그인에 실패했습니다. 이메일과 비밀번호를 다시 확인해 주세요!')
+    }
   }
 
   return (
     <section className={styles.auth}>
-      
-      {/* 🎨 폼과 오른쪽 빈 공간을 묶어주던 카드 껍데기 복구! */}
       <div className={styles.card}>
         <form onSubmit={submitFun}>
           <p>환영합니다</p>
@@ -46,20 +52,16 @@ const Login = () => {
             />
           </label>
           
-          {/* 버튼은 CSS에서 직접 스타일링되므로 클래스명 없어도 예쁘게 나옵니다 */}
           <button type='submit'>로그인</button>
           
-          {/* 🎨 가운데 정렬되도록 styles.link 클래스 부활! */}
           <p className={styles.link}>
             계정이 없나요?{'  '}
             <Link to='/signup'>회원가입</Link>
           </p>
         </form>
 
-        {/* 🎨 그리드 레이아웃의 오른쪽 공간을 채워줄 짝꿍 박스 복구 */}
         <div className={styles.visual}></div>
       </div>
-      
     </section>
   )
 }

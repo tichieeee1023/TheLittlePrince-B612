@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import useAuthStore from '../store/useAuthStore' // 👈 1. 파이어베이스 스토어 불러오기!
 import styles from './Auth.module.scss'
 
 const Signup = () => {
@@ -8,17 +9,25 @@ const Signup = () => {
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate() 
+    const { signup } = useAuthStore() // 👈 2. 스토어에서 회원가입 기능 꺼내기!
     
-    const subminFun = (e) => {
-        // form 제출시 새로고침 방지
+    // 👈 3. 비동기 통신을 위해 async를 꼭 붙여줍니다.
+    const subminFun = async (e) => {
         e.preventDefault()
-        // 가입 완료 후 방명록으로 슝~
-        navigate('/guestbook')
+        
+        try {
+            // 👈 4. 파이어베이스에 닉네임, 이메일, 비번을 보내 진짜 가입을 시킵니다!
+            await signup(email, password, nickname)
+            alert('환영합니다! 소행성 B612의 주민이 되셨습니다. 🦊')
+            navigate('/guestbook') // 가입 성공 시에만 방명록으로 슝~
+        } catch (error) {
+            console.error("회원가입 에러:", error)
+            alert('회원가입에 실패했습니다. 이메일이나 비밀번호(6자리 이상)를 확인해주세요!')
+        }
     }
 
   return (
     <section className={styles.auth}>
-       {/* 🎨 Login.jsx와 구조 통일: form 대신 div에 card 클래스 부여! */}
        <div className={styles.card}>
            <form onSubmit={subminFun}>
                 <h1>회원가입</h1>
@@ -46,7 +55,6 @@ const Signup = () => {
 
                 <button type='submit'>가입하기</button>
                 
-                {/* 🎨 styles.link 부활: 글씨를 정중앙에 예쁘게 배치! */}
                 <p className={styles.link}>
                     계정이 있나요?{' '} 
                     <Link to='/login'>로그인</Link>
