@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { db } from '../firebase' 
+import { db, auth } from '../firebase'
 import { 
   collection, 
   getDocs, 
@@ -94,7 +94,8 @@ const useGuestbookStore = create((set, get) => ({
         nickname: fromData.nickname,
         message: fromData.message,
         character: fromData.character,
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        uid: auth.currentUser?.uid
       }
       const docRef = await addDoc(collection(db, 'guestbook'), newPost)
       set((state) => ({
