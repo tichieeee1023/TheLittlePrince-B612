@@ -180,3 +180,35 @@ form {
     }
   }
 }
+
+// 📱 모바일 반응형
+@media (max-width: 768px) {
+  form {
+    padding: 24px 20px; // 폼 안쪽 여백 줄이기
+    gap: 20px;
+    border-radius: 20px;
+
+    h2 {
+      font-size: 20px; // 제목 크기 조절
+    }
+
+    div > div button {
+      font-size: 22px; // 이모티콘 크기 살짝 축소
+    }
+
+    .field {
+      input, textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+      textarea {
+        height: 100px; // 모바일에서는 텍스트 영역 높이를 살짝 줄임
+      }
+    }
+
+    .submitBtn {
+      height: 48px;
+      font-size: 15px;
+    }
+  }
+}

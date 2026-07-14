@@ -9,7 +9,7 @@ const CharacterAvatar = ({ character }) => {
   return (
     <img 
       src={characterData.src} 
-      alt={characterData.title}
+      alt={characterData.label}
       className={styles.avatar} 
     />
   )

@@ -8,7 +8,7 @@ $deep-night: #0c0e17;
 $overlay-gradient: linear-gradient(
   180deg, 
   rgba(12, 14, 23, 0.1) 0%, 
-  rgba(12, 14, 23, 0.6) 100
+  rgba(12, 14, 23, 0.6) 100% // 👈 100 뒤에 누락되었던 % 보정 완료!
 ); 
 
 .home {
@@ -41,7 +41,7 @@ $overlay-gradient: linear-gradient(
     }
   }
 
- // 📖 한 권의 동화책 같은 자막 바 (Glassmorphism + Soft Glow)
+ // 📖 한 권의 동화책 같은 자막 바
   .copy {
     position: absolute;
     top: 78%; 
@@ -49,16 +49,13 @@ $overlay-gradient: linear-gradient(
     transform: translate(-50%, -50%);
     text-align: center;
     
-    // 💡 [수정] 와이드 사이즈를 조금 더 늘려 시네마틱한 감성을 강조했습니다.
     width: 93%;
     max-width: 900px; 
     
-    // ✨ 밤하늘 아래 떠 있는 은은한 안개 같은 유리 박스
     background: rgba(20, 18, 28, 0.6); 
     padding: 32px 45px; 
     border-radius: 24px; 
     
-    // 💫 여우 테마의 핵심: 은은하게 퍼지는 오렌지빛 안개와 세련된 테두리
     backdrop-filter: blur(10px); 
     border: 1px solid rgba(255, 126, 71, 0.18);
     box-shadow: 
@@ -78,7 +75,6 @@ $overlay-gradient: linear-gradient(
       text-shadow: 0 0 8px rgba(254, 240, 138, 0.5);
     }
 
-    // 🌹 영문 자막
     .en {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem; 
@@ -90,7 +86,6 @@ $overlay-gradient: linear-gradient(
       font-style: italic;
     }
 
-    // 🌾 한국어 자막
     .ko {
       font-family: 'Gowun Batang', serif;
       font-size: 1.05rem;
@@ -103,8 +98,9 @@ $overlay-gradient: linear-gradient(
     }
   }
 
-  // ⭐️ 사막 위에 밤하늘을 수놓은 별빛 인디케이터
+  // ⭐️ 별빛 인디케이터
   .dots {
+    position: absolute; // 부모가 relative이므로 절대위치 고정
     bottom: 35px; 
     left: 50%;
     transform: translateX(-50%); 
@@ -131,6 +127,31 @@ $overlay-gradient: linear-gradient(
         width: 32px; 
         border-radius: 20px;
         box-shadow: 0 0 12px rgba(255, 126, 71, 0.8);
+      }
+    }
+  }
+}
+
+// 📱 [추가] 모바일 반응형 디자인 개입
+@media (max-width: 768px) {
+  .home {
+    .copy {
+      top: 70%;              // 👈 모바일 키보드나 하단바 배려해 위치 살짝 조정
+      width: 90%;
+      padding: 20px 24px;    // 유리창 상자 축소
+      border-radius: 18px;
+
+      h1 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 2px; }
+      .en { font-size: 1.15rem; margin-bottom: 8px; line-height: 1.4; }
+      .ko { font-size: 0.9rem; line-height: 1.5; }
+    }
+
+    .dots {
+      bottom: 25px;          // 모바일 인디케이터 살짝 올리기
+      gap: 12px;
+      button {
+        width: 8px; height: 8px;
+        &.activeDot { width: 24px; }
       }
     }
   }

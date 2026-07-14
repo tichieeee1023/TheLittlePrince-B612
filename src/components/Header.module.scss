@@ -147,3 +147,29 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
   0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(0.8); }
   50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
 }
+
+// 📱 모바일 반응형 (화면 가로 너비가 768px 이하일 때 작동)
+@media (max-width: 768px) {
+  .header {
+    height: 60px; // 헤더 높이 살짝 줄이기
+
+    .container {
+      padding: 0 16px;
+
+      .logo {
+        font-size: 18px; // 로고 크기 축소
+        .highlight { margin-left: 4px; }
+      }
+
+      .nav {
+        gap: 16px; // 메뉴 사이 간격 축소
+        a { font-size: 14px; }
+      }
+
+      .auth {
+        gap: 12px;
+        a { font-size: 12px; }
+      }
+    }
+  }
+}

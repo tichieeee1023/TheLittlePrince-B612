@@ -20,10 +20,10 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
     padding: 0 20px;
   }
 
-  // 🌟 문제의 그 최상단! 동화책 프롤로그처럼 감성적으로 변신
+  // 🌟 최상단 타이틀 구역
   .welcomeBox {
     text-align: center;
-    margin-bottom: 45px; // 폼과의 간격을 확 벌려줌
+    margin-bottom: 45px; 
     color: $text-main;
     display: flex;
     flex-direction: column;
@@ -33,7 +33,7 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
       margin: 0;
       font-size: 16px;
       color: $text-sub;
-      letter-spacing: 1px; // 글자 사이를 살짝 띄워 서정적인 느낌
+      letter-spacing: 1px; 
     }
 
     h1 {
@@ -42,7 +42,7 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
       margin: 10px 0;
       color: $point-fox;
       letter-spacing: 4px;
-      text-shadow: 0 2px 15px rgba($point-fox, 0.15); // 은은한 노을빛 그림자
+      text-shadow: 0 2px 15px rgba($point-fox, 0.15); 
     }
   }
 
@@ -53,7 +53,7 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 2px solid rgba($point-fox, 0.2); // 아래에 살구빛 선긋기
+    border-bottom: 2px solid rgba($point-fox, 0.2); 
     padding-bottom: 12px;
 
     h2 {
@@ -91,7 +91,7 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-3px); // 마우스 올리면 카드가 살짝 떠오름
+      transform: translateY(-3px); 
       box-shadow: 0 8px 25px rgba($point-fox, 0.08);
     }
 
@@ -128,7 +128,7 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
         transition: color 0.2s;
 
         &:hover {
-          color: #ef4444; // 삭제 버튼 호버 시 경고색
+          color: #ef4444; 
           text-decoration: underline;
         }
       }
@@ -139,13 +139,13 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
       line-height: 1.6;
       color: $text-main;
       margin: 0;
-      white-space: pre-wrap; // 사용자가 엔터 친 줄바꿈 그대로 유지
+      white-space: pre-wrap; 
     }
 
     .avatarWrapper {
       margin-top: 20px;
       display: flex;
-      justify-content: flex-end; // 캐릭터 아바타를 카드 오른쪽 아래에 귀엽게 배치
+      justify-content: flex-end; 
 
       img {
         width: 55px; 
@@ -163,30 +163,79 @@ $bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 
   }
 }
 
+// 🌟 더보기 버튼 (구조 밖으로 탈출해 있던 것 안전하게 재배치)
 .loadMoreBtn {
-    font-family: 'Gowun Batang', serif;
-    width: 100%;
-    height: 50px;
-    background-color: #ffffff;
-    color: $point-fox;
-    border: 2px dashed rgba($point-fox, 0.4); // 은은한 점선 테두리
-    border-radius: 14px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
+  font-family: 'Gowun Batang', serif;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
+  color: $point-fox;
+  border: 2px dashed rgba($point-fox, 0.4); 
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
 
-    &:hover {
-      background-color: rgba($point-fox, 0.04);
-      border-color: $point-fox;
-      transform: translateY(-1px);
+  &:hover {
+    background-color: rgba($point-fox, 0.04);
+    border-color: $point-fox;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+  }
+}
+
+// 📱 [추가] 모바일 반응형 디자인 실시간 개입
+@media (max-width: 768px) {
+  .guestbookPage {
+    padding-top: 90px; // 모바일에서는 상단 여백 압축
+    padding-bottom: 60px;
+
+    .container {
+      padding: 0 16px; // 화면 여백 확보
     }
 
-    &:disabled {
-      background-color: #f1f5f9;
-      color: #94a3b8;
-      border-color: #e2e8f0;
-      cursor: not-allowed;
+    .welcomeBox {
+      margin-bottom: 30px;
+      h1 { font-size: 30px; letter-spacing: 2px; }
+      p { font-size: 14px; }
+    }
+
+    .listHeader {
+      margin-top: 40px;
+      padding-bottom: 8px;
+      h2 { font-size: 18px; }
+      p { font-size: 14px; strong { font-size: 16px; } }
+    }
+
+    .postCard {
+      padding: 16px 20px; // 모바일 카드 패딩 축소
+      border-radius: 16px;
+
+      .postCardHeader {
+        margin-bottom: 10px;
+        div {
+          gap: 8px;
+          strong { font-size: 15px; }
+          span { font-size: 12px; }
+        }
+        .deleteBtn { font-size: 12px; }
+      }
+
+      .postMessage { font-size: 14px; }
+      .avatarWrapper { margin-top: 12px; img { width: 45px; height: 45px; } }
     }
   }
+  
+  .loadMoreBtn {
+    height: 46px;
+    font-size: 14px;
+  }
+}
