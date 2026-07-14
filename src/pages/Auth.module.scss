@@ -1,0 +1,116 @@
+// ==========================================
+// 🦊 사막 여우 & 밤하늘 팔레트 
+// ==========================================
+$bg-night-sky: #0f172a;    
+$card-sand: #fafaf9;       
+$point-fox: #f97316;       
+$point-fox-hover: #ea580c; 
+$text-main: #334155;       
+$text-sub: #64748b;        
+$border-color: #e2e8f0;    
+// ==========================================
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $bg-night-sky; // 밤하늘 배경
+  padding-top: 70px; // 헤더 영역 띄우기
+  box-sizing: border-box;
+
+  .card {
+    // 💡 변경된 핵심 영역: 그리드를 없애고 깔끔한 세로형 플렉스로 변경!
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    width: 450px; // 1단 배열에 맞게 아담해진 폼 너비
+    background-color: $card-sand; 
+    padding: 40px;
+    border-radius: 16px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+    box-sizing: border-box;
+
+    p {
+      margin: 0;
+      color: $text-sub;
+      font-size: 15px;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: $text-main;
+      margin: 0;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    // 입력 필드 그룹 (이메일, 비밀번호)
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: $text-main;
+    }
+
+    // 입력창 디자인
+    input {
+      width: 100%;
+      height: 48px;
+      border: 1.5px solid $border-color;
+      border-radius: 8px;
+      padding: 0 16px;
+      font-size: 15px;
+      color: $text-main;
+      box-sizing: border-box;
+      transition: all 0.3s ease; 
+
+      &:focus {
+        outline: none;
+        border-color: $point-fox; 
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1); 
+      }
+    }
+
+    // 로그인 버튼
+    button {
+      width: 100%; // 폼 너비에 꽉 차게 변경
+      height: 52px;
+      background-color: $point-fox; 
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: $point-fox-hover; 
+      }
+    }
+
+    // 하단 링크 ("계정이 없나요?")
+    .link {
+      text-align: center;
+      font-size: 14px;
+      color: $text-sub;
+      margin-top: 10px;
+
+      a {
+        color: $point-fox;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 5px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

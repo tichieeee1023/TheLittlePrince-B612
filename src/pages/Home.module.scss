@@ -1,0 +1,137 @@
+// 🪐 구글 폰트 불러오기 (영문: 우아한 세리프 / 국문: 따뜻한 감성의 고운바탕체)
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gowun+Batang:wght@400;700&display=swap');
+
+// 🦊 어린왕자와 여우 테마 팔레트
+$point-fox: #ff7e47;      
+$star-gold: #fef08a;  
+$deep-night: #0c0e17;  
+$overlay-gradient: linear-gradient(
+  180deg, 
+  rgba(12, 14, 23, 0.1) 0%, 
+  rgba(12, 14, 23, 0.6) 100
+); 
+
+.home {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  height: 100vh;
+  overflow: hidden;
+  background-color: $deep-night;
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: $overlay-gradient;
+      z-index: 1;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      object-position: center; 
+    }
+  }
+
+ // 📖 한 권의 동화책 같은 자막 바 (Glassmorphism + Soft Glow)
+  .copy {
+    position: absolute;
+    top: 78%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+    // 💡 [수정] 와이드 사이즈를 조금 더 늘려 시네마틱한 감성을 강조했습니다.
+    width: 93%;
+    max-width: 900px; 
+    
+    // ✨ 밤하늘 아래 떠 있는 은은한 안개 같은 유리 박스
+    background: rgba(20, 18, 28, 0.6); 
+    padding: 32px 45px; 
+    border-radius: 24px; 
+    
+    // 💫 여우 테마의 핵심: 은은하게 퍼지는 오렌지빛 안개와 세련된 테두리
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 126, 71, 0.18);
+    box-shadow: 
+      0 20px 50px rgba(0, 0, 0, 0.4),
+      0 0 25px rgba(255, 126, 71, 0.1); 
+    
+    z-index: 10;
+    box-sizing: border-box;
+
+    h1 {
+      font-family: 'Gowun Batang', serif;
+      font-size: 1.25rem; 
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      letter-spacing: 4px;
+      color: $star-gold; 
+      text-shadow: 0 0 8px rgba(254, 240, 138, 0.5);
+    }
+
+    // 🌹 영문 자막
+    .en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; 
+      font-weight: 400;
+      color: #ffffff; 
+      line-height: 1.6;
+      margin: 0 0 12px 0;
+      word-break: keep-all;
+      font-style: italic;
+    }
+
+    // 🌾 한국어 자막
+    .ko {
+      font-family: 'Gowun Batang', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #e2e8f0; 
+      line-height: 1.7;
+      margin: 0;
+      word-break: keep-all;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  // ⭐️ 사막 위에 밤하늘을 수놓은 별빛 인디케이터
+  .dots {
+    bottom: 35px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    display: flex;
+    gap: 16px;
+    z-index: 10;
+
+    button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.35); 
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        background-color: rgba(254, 240, 138, 0.8);
+        box-shadow: 0 0 8px $star-gold;
+      }
+
+      &.activeDot {
+        background-color: $point-fox; 
+        width: 32px; 
+        border-radius: 20px;
+        box-shadow: 0 0 12px rgba(255, 126, 71, 0.8);
+      }
+    }
+  }
+}

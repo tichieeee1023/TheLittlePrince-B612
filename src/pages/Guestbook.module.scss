@@ -1,0 +1,192 @@
+// 🪐 따뜻하고 다정한 이야기체 폰트 불러오기
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+// 🦊 사막 여우 테마 공통 변수
+$point-fox: #ff7e47;         
+$text-main: #334155;         
+$text-sub: #64748b;          
+$bg-paper: #fdfcf8; // 편지지 느낌의 아주 따뜻하고 연한 상아색 배경
+
+.guestbookPage {
+  min-height: 100vh;
+  background-color: $bg-paper; 
+  padding-top: 120px; // 헤더 밑으로 충분히 떨어지도록 여백 추가
+  padding-bottom: 100px;
+  font-family: 'Gowun Batang', serif; // 페이지 전체에 동화 폰트 적용!
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  // 🌟 문제의 그 최상단! 동화책 프롤로그처럼 감성적으로 변신
+  .welcomeBox {
+    text-align: center;
+    margin-bottom: 45px; // 폼과의 간격을 확 벌려줌
+    color: $text-main;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    p {
+      margin: 0;
+      font-size: 16px;
+      color: $text-sub;
+      letter-spacing: 1px; // 글자 사이를 살짝 띄워 서정적인 느낌
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 10px 0;
+      color: $point-fox;
+      letter-spacing: 4px;
+      text-shadow: 0 2px 15px rgba($point-fox, 0.15); // 은은한 노을빛 그림자
+    }
+  }
+
+  // 🌟 방명록 목록 헤더 ("여러분들의 기록")
+  .listHeader {
+    margin-top: 70px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid rgba($point-fox, 0.2); // 아래에 살구빛 선긋기
+    padding-bottom: 12px;
+
+    h2 {
+      font-size: 22px;
+      color: $text-main;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      color: $text-sub;
+      font-size: 16px;
+
+      strong {
+        color: $point-fox;
+        font-size: 20px;
+      }
+    }
+  }
+
+  // 🌟 작성된 방명록 카드 목록
+  .postList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .postCard {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba($point-fox, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px); // 마우스 올리면 카드가 살짝 떠오름
+      box-shadow: 0 8px 25px rgba($point-fox, 0.08);
+    }
+
+    .postCardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        strong {
+          font-size: 18px;
+          font-weight: 700;
+          color: $text-main;
+        }
+
+        span {
+          font-size: 14px;
+          color: #94a3b8;
+        }
+      }
+
+      .deleteBtn {
+        background: none;
+        border: none;
+        color: #cbd5e1;
+        font-size: 14px;
+        font-family: 'Gowun Batang', serif;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #ef4444; // 삭제 버튼 호버 시 경고색
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .postMessage {
+      font-size: 16px;
+      line-height: 1.6;
+      color: $text-main;
+      margin: 0;
+      white-space: pre-wrap; // 사용자가 엔터 친 줄바꿈 그대로 유지
+    }
+
+    .avatarWrapper {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end; // 캐릭터 아바타를 카드 오른쪽 아래에 귀엽게 배치
+
+      img {
+        width: 55px; 
+        height: 55px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .empty {
+    text-align: center;
+    padding: 80px 0;
+    color: $text-sub;
+    font-size: 18px;
+  }
+}
+
+.loadMoreBtn {
+    font-family: 'Gowun Batang', serif;
+    width: 100%;
+    height: 50px;
+    background-color: #ffffff;
+    color: $point-fox;
+    border: 2px dashed rgba($point-fox, 0.4); // 은은한 점선 테두리
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: rgba($point-fox, 0.04);
+      border-color: $point-fox;
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      background-color: #f1f5f9;
+      color: #94a3b8;
+      border-color: #e2e8f0;
+      cursor: not-allowed;
+    }
+  }

@@ -1,0 +1,13 @@
+/* 🌍 모든 요소를 위한 글로벌 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 패딩을 넣어도 박스 크기가 늘어나지 않게 고정 */
+}
+
+body {
+  /* 사막 여우 테마의 깊은 밤하늘 색을 기본 배경으로 깔아둡니다 */
+  background-color: #0f172a; 
+  color: #f8fafc;
+  overflow-x: hidden; /* 가로 스크롤바가 미밉게 생기는 것 방지 */
+}

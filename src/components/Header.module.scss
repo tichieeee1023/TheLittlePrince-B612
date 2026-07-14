@@ -1,0 +1,149 @@
+// 🪐 구글 폰트 불러오기 (영문 로고: 신비로운 세리프 / 메뉴: 다정한 고운바탕체)
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gowun+Batang:wght@400;700&display=swap');
+
+// 🦊 어린왕자와 여우 테마 공통 팔레트
+$deep-night: #0c0e17;        // 사막의 깊고 신비로운 밤하늘색
+$point-fox: #ff7e47;         // 노을빛을 품은 따스한 여우 오렌지색
+$star-gold: #fef08a;         // 반짝이는 별빛과 어린왕자의 금빛 머리카락
+$text-light: #f8fafc;        // 달빛처럼 하얀 메인 텍스트
+$text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
+
+.header {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  
+  // 🌌 밤하늘에 은은한 안개가 낀 듯, 배경 영상이 투명하게 비치는 몽환적 유리 필터
+  background-color: rgba($deep-night, 0.6); 
+  backdrop-filter: blur(12px); // 블러 반경을 넓혀 더욱 부드러운 인상을 줍니다.
+  
+  // 딱딱한 선 대신 밤하늘의 경계선처럼 미세하게 빛나는 여우빛 테두리
+  border-bottom: 1px solid rgba($point-fox, 0.12);
+  z-index: 1000;
+  
+  // 수평선 아래로 잔잔하게 번지는 달빛 음영
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+
+  .container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .logo {
+      flex: 1;
+      font-family: 'Gowun Batang', serif; // 딱딱한 고딕체 대신 동화책 폰트로 변경
+      font-size: 22px;
+      font-weight: 700;
+      color: #f8fafc; // 기본 글자는 맑은 별빛(흰색)으로
+      text-decoration: none;
+      letter-spacing: 2px; // 글자 사이를 띄워 여유로운 느낌
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+
+      .highlight {
+        color: $point-fox; // 'B612' 부분만 여우빛 오렌지로 포인트!
+        font-weight: 900;
+        margin-left: 8px;
+        font-family: sans-serif; // B612 숫자만 살짝 깔끔하게
+      }
+
+      &:hover {
+        transform: scale(1.02); // 마우스 올리면 살짝 커지며
+        text-shadow: 0 0 12px rgba($point-fox, 0.6); // 은은하게 빛나는 별빛 글로우 효과
+      }
+    }
+
+    .nav {
+      display: flex;
+      gap: 36px; // 메뉴 사이의 숨통을 살짝 더 틔워줍니다.
+
+      a {
+        position: relative;
+        color: $text-mist;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+
+        // 호버 시 밤하늘의 안개가 걷히듯 달빛처럼 선명해짐
+        &:hover { 
+          color: $text-light; 
+        }
+        
+        // 🦊 여우에게 길들여진(현재 활성화된) 메뉴 상태
+        &.active {
+          color: $point-fox; 
+          font-weight: 900;
+          text-shadow: 0 0 8px rgba($point-fox, 0.3);
+
+          // 활성화된 메뉴 아래에 작은 별빛(도트) 하나가 톡 떨어지는 디테일
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background-color: $star-gold;
+            border-radius: 50%;
+            box-shadow: 0 0 8px $star-gold;
+            animation: starBlink 2s infinite ease-in-out; 
+          }
+        }
+      }
+    }
+
+    .auth {
+      flex: 1; 
+      justify-content: flex-end; 
+      
+      display: flex;
+      gap: 20px;
+
+      a {
+        position: relative;
+        color: $text-mist;
+        text-decoration: none;
+        font-size: 13px;
+        letter-spacing: -0.3px;
+        transition: all 0.3s ease;
+
+        &:hover { 
+          color: $text-light; 
+        }
+
+        &.active {
+          color: $point-fox;
+          font-weight: 800;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 3px;
+            background-color: $star-gold;
+            border-radius: 50%;
+            box-shadow: 0 0 6px $star-gold;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ⭐️ 활성화된 메뉴 아래에서 별빛이 아른거리는 낭만적인 애니메이션
+@keyframes starBlink {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(0.8); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}

@@ -1,0 +1,182 @@
+// 🪐 따뜻하고 다정한 이야기체 폰트 불러오기
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+// 🦊 사막 여우 테마 공통 변수
+$point-fox: #ff7e47;         // 사막의 노을을 닮은 따스한 여우빛 오렌지
+$star-gold: #f59e0b;         // 어린왕자의 금빛 머리카락과 별빛 옐로우
+$sand-cozy: #fffbf6;         // 포근하고 다정한 사막의 모래빛 (폼 배경)
+$text-main: #4338ca;         // 밤하늘의 푸른빛이 살짝 섞인 깊은 에메랄드 네이비 (혹은 부드러운 차콜)
+$text-sub: #64748b;          // 은은한 서브 텍스트 컬러
+$border-dreamy: #fcd34d;     // 은은한 노을빛을 품은 부드러운 테두리
+
+form {
+  font-family: 'Gowun Batang', serif; // 전체 폼에 동화 같은 서체 적용
+  background-color: $sand-cozy;
+  padding: 36px 30px; // 위아래 여백을 살짝 넓혀 포근한 인상 부여
+  border-radius: 24px; // 모서리를 더 둥글고 부드럽게
+  border: 1px solid rgba($point-fox, 0.15);
+  box-shadow: 
+    0 10px 30px rgba(255, 126, 71, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 28px; // 요소 간의 간격을 살짝 넓혀 여유로운 느낌을 줌
+  color: #334155;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    color: $point-fox;
+    letter-spacing: -0.5px;
+    
+    // 제목 뒤에 작은 별이 반짝이는 듯한 느낌의 텍스트 그림자
+    text-shadow: 0 2px 4px rgba($point-fox, 0.1);
+  }
+
+  // 1. 이모티콘 구역 (여우의 마음을 고르는 시간)
+  div {
+    p { 
+      margin: 0 0 10px 0; 
+      font-weight: 700; 
+      font-size: 14px; 
+      text-align: center;
+      color: $text-sub;
+    }
+    div {
+      display: flex;
+      gap: 12px; // 이모티콘 사이 여백 넓힘
+      flex-wrap: wrap; 
+      justify-content: center; 
+      
+      button {
+        font-size: 26px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); // 통통 튀는 애니메이션
+        
+        &:hover { 
+          transform: scale(1.3) rotate(5deg); // 살짝 기울어지며 커지는 효과
+        }
+      }
+    }
+  }
+
+  // 2. 닉네임, 메세지 입력 필드 (어린왕자에게 보내는 편지지)
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: $text-sub;
+
+    input, textarea {
+      font-family: 'Gowun Batang', serif;
+      width: 100%;
+      background-color: #ffffff;
+      border: 1.5px solid rgba($point-fox, 0.2); // 딱딱한 회색 대신 은은한 살구빛 테두리
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 15px;
+      box-sizing: border-box;
+      outline: none;
+      color: #1e293b;
+      transition: all 0.3s ease;
+
+      &::placeholder {
+        color: #cbd5e1;
+      }
+
+      // ⭐️ 포커스 시 별빛이 켜지듯 노란빛/오렌지빛 글로우 효과
+      &:focus {
+        border-color: $point-fox;
+        background-color: #ffffff;
+        box-shadow: 
+          0 0 0 3px rgba($point-fox, 0.08),
+          0 2px 8px rgba($point-fox, 0.1);
+      }
+    }
+
+    textarea {
+      height: 120px;
+      resize: none; 
+      line-height: 1.6;
+    }
+  }
+
+  // 3. 캐릭터 선택 구역
+  strong { 
+    font-size: 14px; 
+    font-weight: 700;
+    display: block; 
+    margin-bottom: 10px; 
+    text-align: center; 
+    color: $text-sub;
+  }
+  
+  // 캐릭터 버튼들을 감싸는 div
+  div > div {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center; 
+
+    button {
+      background: #ffffff;
+      border: 2px solid #f1f5f9;
+      border-radius: 16px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+
+      &:hover {
+        background: #fffbeb;
+        border-color: rgba($star-gold, 0.3);
+        transform: translateY(-2px); // 살짝 떠오르는 느낌
+      }
+
+      // 🦊 여우에게 길들여진(선택된) 캐릭터 카드 효과
+      &.selected {
+        border-color: $point-fox;
+        background: rgba($point-fox, 0.04);
+        box-shadow: 
+          0 4px 12px rgba($point-fox, 0.12),
+          0 0 0 3px rgba($point-fox, 0.05);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  // 4. 최종 등록 버튼 (사막의 노을빛을 담은 버튼)
+  .submitBtn {
+    font-family: 'Gowun Batang', serif;
+    width: 100%;
+    height: 54px;
+    // 사막의 아름다운 석양을 표현한 그라데이션
+    background: linear-gradient(135deg, $point-fox 0%, #f59e0b 100%);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba($point-fox, 0.3);
+
+    &:hover {
+      // 호버 시 노을빛이 더 화사하게 번지는 효과
+      background: linear-gradient(135deg, #ff8f5e 0%, #ea580c 100%);
+      box-shadow: 0 6px 20px rgba($point-fox, 0.45);
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
