@@ -16,6 +16,14 @@ const CHARACTERS = [
 
 { id: 'fox8', label: '여우', src: '/character-fox8.png' },
 
+{ id: 'fox9', label: '여우', src: '/character-fox9.png' },
+
+{ id: 'fox10', label: '여우', src: '/character-fox10.png' },
+
+{ id: 'fox11', label: '여우', src: '/character-fox11.png' },
+
+{ id: 'fox12', label: '여우', src: '/character-fox12.png' }
+
 ]
 
 export default CHARACTERS;

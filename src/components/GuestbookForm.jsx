@@ -5,7 +5,8 @@ import CHARACTERS from './characterData'
 import useAuthStore from '../store/useAuthStore' // 👈 2. 유저 정보 스토어
 import styles from './GuestbookForm.module.scss'
 
-const EMOJIS = ['😀', '😊', '🥰', '😂', '😮', '😢', '😭', '😴', '🤔', '😎', '🥳']
+const EMOJIS = ['😀', '😊', '🥰', '😂', '😮', '😢', '😭', '😴', '🤔', '😎', '⭐​', '✈️', '🦊', '🌹', '​🪐​', '💖', '🌌​',   '👑', '🐑', '📦', '🐍', '🐘', '🌳'];
+
 
 const GuestbookForm = ({ onAddPost }) => {
   const [nickname, setNickname] = useState('')

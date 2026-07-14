@@ -1,6 +1,6 @@
 .avatar {
-  width: 70px;         // 👈 아바타 크기 고정!
-  height: 70px;
+  width: 100px;         // 👈 아바타 크기 고정!
+  height: 100px;
   object-fit: contain; // 이미지 비율이 깨지지 않고 예쁘게 들어가도록 합니다
   border-radius: 12px; // 모서리를 살짝 부드럽게
   transition: transform 0.2s ease;
