@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom' // 👈 1. 쫓아낼(?) 때 쓸 네비게이터
 import CharacterAvatar from './CharacterAvatar'
 import CHARACTERS from './characterData'
+import useAuthStore from '../store/useAuthStore' // 👈 2. 유저 정보 스토어
 import styles from './GuestbookForm.module.scss'
 
 const EMOJIS = ['😀', '😊', '🥰', '😂', '😮', '😢', '😭', '😴', '🤔', '😎', '🥳']
@@ -10,6 +12,9 @@ const GuestbookForm = ({ onAddPost }) => {
   const [message, setMessage] = useState('')
   const [character, setCharacter] = useState('')
 
+  const { user } = useAuthStore() // 👈 3. 현재 로그인한 유저 상태 
+  const navigate = useNavigate()  // 👈 4. 페이지 이동용
+
   const addE = (emoji) => {
     setMessage((msg) => msg + emoji)
   }
@@ -17,7 +22,13 @@ const GuestbookForm = ({ onAddPost }) => {
   const submitFnc = (e) => {
     e.preventDefault()
     
-    // 🛡️ 누락되었던 빈칸 방지 기능 부활!
+    // 🛡️ 5. 진짜 로그인 안 한 유저 튕겨내기!
+    if (!user) {
+      alert('로그인이 필요한 서비스입니다! 소행성 B612에 먼저 체크인해주세요. 🦊')
+      navigate('/login')
+      return
+    }
+    
     if (!nickname || !message || !character) {
         alert('닉네임, 메시지를 입력하고 캐릭터를 꼭 선택해 주세요!')
         return
@@ -30,7 +41,6 @@ const GuestbookForm = ({ onAddPost }) => {
     }
     
     onAddPost(newPost)
-
     setNickname("")
     setMessage("")
     setCharacter("")

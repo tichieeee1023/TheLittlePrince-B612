@@ -14,16 +14,10 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
   left: 0;
   width: 100%;
   height: 70px;
-  
-  // 🌌 밤하늘에 은은한 안개가 낀 듯, 배경 영상이 투명하게 비치는 몽환적 유리 필터
   background-color: rgba($deep-night, 0.6); 
-  backdrop-filter: blur(12px); // 블러 반경을 넓혀 더욱 부드러운 인상을 줍니다.
-  
-  // 딱딱한 선 대신 밤하늘의 경계선처럼 미세하게 빛나는 여우빛 테두리
+  backdrop-filter: blur(12px); 
   border-bottom: 1px solid rgba($point-fox, 0.12);
   z-index: 1000;
-  
-  // 수평선 아래로 잔잔하게 번지는 달빛 음영
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 
   .container {
@@ -37,32 +31,32 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
 
     .logo {
       flex: 1;
-      font-family: 'Gowun Batang', serif; // 딱딱한 고딕체 대신 동화책 폰트로 변경
+      font-family: 'Gowun Batang', serif; 
       font-size: 22px;
       font-weight: 700;
-      color: #f8fafc; // 기본 글자는 맑은 별빛(흰색)으로
+      color: #f8fafc; 
       text-decoration: none;
-      letter-spacing: 2px; // 글자 사이를 띄워 여유로운 느낌
+      letter-spacing: 2px; 
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
 
       .highlight {
-        color: $point-fox; // 'B612' 부분만 여우빛 오렌지로 포인트!
+        color: $point-fox; 
         font-weight: 900;
         margin-left: 8px;
-        font-family: sans-serif; // B612 숫자만 살짝 깔끔하게
+        font-family: sans-serif; 
       }
 
       &:hover {
-        transform: scale(1.02); // 마우스 올리면 살짝 커지며
-        text-shadow: 0 0 12px rgba($point-fox, 0.6); // 은은하게 빛나는 별빛 글로우 효과
+        transform: scale(1.02); 
+        text-shadow: 0 0 12px rgba($point-fox, 0.6); 
       }
     }
 
     .nav {
       display: flex;
-      gap: 36px; // 메뉴 사이의 숨통을 살짝 더 틔워줍니다.
+      gap: 36px; 
 
       a {
         position: relative;
@@ -72,18 +66,15 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
         font-weight: 700;
         transition: all 0.3s ease;
 
-        // 호버 시 밤하늘의 안개가 걷히듯 달빛처럼 선명해짐
         &:hover { 
           color: $text-light; 
         }
         
-        // 🦊 여우에게 길들여진(현재 활성화된) 메뉴 상태
         &.active {
           color: $point-fox; 
           font-weight: 900;
           text-shadow: 0 0 8px rgba($point-fox, 0.3);
 
-          // 활성화된 메뉴 아래에 작은 별빛(도트) 하나가 톡 떨어지는 디테일
           &::after {
             content: '';
             position: absolute;
@@ -104,9 +95,9 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
     .auth {
       flex: 1; 
       justify-content: flex-end; 
-      
       display: flex;
       gap: 20px;
+      align-items: center; // 세로 중앙 정렬 보정
 
       a {
         position: relative;
@@ -138,37 +129,86 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
           }
         }
       }
+
+      // 🪐 [추가] 로그인 성공 시 닉네임 박스 레이아웃
+      .userBox {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        .welcomeMsg {
+          font-size: 14px;
+          color: $text-light;
+          font-weight: 400;
+          letter-spacing: -0.3px;
+
+          strong {
+            color: $star-gold; // 닉네임은 영롱한 금빛 포인트
+            font-weight: 700;
+            text-shadow: 0 0 6px rgba($star-gold, 0.4);
+          }
+        }
+
+        .logoutBtn {
+          background: none;
+          border: 1px solid rgba($text-mist, 0.3);
+          color: $text-mist;
+          padding: 5px 12px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-family: 'Gowun Batang', serif;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            border-color: #ef4444; // 호버 시 부드러운 경고 붉은빛
+            color: #ef4444;
+            background-color: rgba(#ef4444, 0.05);
+          }
+        }
+      }
     }
   }
 }
 
-// ⭐️ 활성화된 메뉴 아래에서 별빛이 아른거리는 낭만적인 애니메이션
 @keyframes starBlink {
   0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(0.8); }
   50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
 }
 
-// 📱 모바일 반응형 (화면 가로 너비가 768px 이하일 때 작동)
+// 📱 [업데이트] 모바일 반응형 완벽 대응 통합
 @media (max-width: 768px) {
   .header {
-    height: 60px; // 헤더 높이 살짝 줄이기
+    height: 60px; 
 
     .container {
-      padding: 0 16px;
+      padding: 0 14px;
 
       .logo {
-        font-size: 18px; // 로고 크기 축소
+        font-size: 17px; 
+        letter-spacing: 1px;
         .highlight { margin-left: 4px; }
       }
 
       .nav {
-        gap: 16px; // 메뉴 사이 간격 축소
-        a { font-size: 14px; }
+        gap: 16px; 
+        a { font-size: 13px; }
       }
 
       .auth {
         gap: 12px;
         a { font-size: 12px; }
+
+        .userBox {
+          gap: 8px;
+          .welcomeMsg {
+            font-size: 12px;
+          }
+          .logoutBtn {
+            padding: 4px 8px;
+            font-size: 11px;
+          }
+        }
       }
     }
   }
