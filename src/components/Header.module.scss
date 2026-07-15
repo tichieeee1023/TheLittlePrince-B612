@@ -237,36 +237,54 @@ $text-mist: #94a3b8;
 
 @media (max-width: 768px) {
   .header {
-    height: 65px; 
+    height: 60px; // 모바일에서는 높이를 살짝 더 얄쌍하게
 
     .container {
-      padding: 0 16px;
+      padding: 0 12px; // 좌우 여백을 줄여 공간 확보
 
       .logo {
-        gap: 8px;
+        gap: 6px;
+        
         .logoSvg {
-          width: 34px;
-          height: 34px;
+          width: 26px; // 로고 아이콘 크기 축소
+          height: 26px;
         }
+
         .logoText {
-          font-size: 16px; 
-          letter-spacing: 0.5px;
-          .highlight { margin-left: 4px; }
+          // ✨ 핵심 마법: 'The Little Prince' 텍스트를 모바일에서 숨김!
+          font-size: 0; 
+          letter-spacing: 0;
+          text-shadow: none; // 그림자도 깔끔하게 제거
+
+          .highlight {
+            font-size: 20px; // 'B612' 텍스트 크기만 되살리기!
+            margin-left: 0;  // 폰트가 0이 되었으니 간격도 초기화
+          }
         }
       }
 
+      // 네비게이션 메뉴 간격 압축
       .nav {
-        gap: 16px; 
-        a { font-size: 13px; }
+        gap: 14px; 
+        a { font-size: 14px; }
       }
 
+      // 우측 아이콘 버튼 공간 확보
       .auth {
-        gap: 12px;
-        a { font-size: 12px; }
+        gap: 8px;
+        
+        .iconBtn {
+          padding: 4px;
+          span { font-size: 20px; } // 구글 아이콘 크기 축소
+        }
 
         .userBox {
-          gap: 8px;
-          .welcomeMsg { font-size: 12px; }
+          gap: 6px;
+          .welcomeMsg { 
+            // 'OO님 로그인 중' 텍스트도 길어질 수 있으니 모바일에선 이름만 표시
+            font-size: 0; 
+            strong { font-size: 13px; } 
+          }
         }
       }
     }

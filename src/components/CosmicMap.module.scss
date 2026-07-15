@@ -180,3 +180,41 @@
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; text-shadow: 0 0 15px rgba(255,255,255,0.4); }
 }
+
+
+@media (max-width: 768px) {
+  .storybookModal {
+    width: 95%; // 모바일에서는 가로를 꽉 차게
+    padding: 12px; // 바깥 패딩 축소
+    
+    .innerFrame {
+      padding: 30px 20px; // 안쪽 프레임 패딩 대폭 축소
+    }
+
+    .closeBtn {
+      top: 10px; right: 10px;
+      font-size: 20px;
+    }
+
+    .subtitle { font-size: 16px; letter-spacing: 2px; }
+    
+    h2 { font-size: 26px; }
+    
+    .divider { margin: 16px 0; }
+    
+    .resident { font-size: 18px; margin-bottom: 12px; }
+    
+    .desc { font-size: 14px; margin-bottom: 24px; }
+
+    .quoteBox {
+      padding: 16px 12px;
+      gap: 10px;
+      
+      .quoteEn { font-size: 16px; line-height: 1.4; }
+      .quoteKo { font-size: 13px; line-height: 1.6; }
+    }
+  }
+  
+  // 모바일에서는 지도 글씨도 살짝 작게
+  .guideText { top: 90px; font-size: 14px; }
+}

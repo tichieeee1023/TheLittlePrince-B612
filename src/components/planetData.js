@@ -7,8 +7,18 @@ export const PLANETS = [
     description: '화산 세 개와 몹시 까다로운 장미 한 송이가 있는 아주 작은 별.',
     quoteEn: '"It is the time you have wasted for your rose that makes your rose so important."',
     quote: '"네 장미꽃이 그토록 소중한 것은, 네가 장미꽃을 위해 보낸 시간 때문이야."',
-    color: '#ff7e47', // 여우빛 오렌지
-    size: 90, top: '45%', left: '45%',
+    color: '#c0b1c5',
+    size: 100, top: '42%', left: '42%',
+  },
+  {
+    id: 'Fox',
+    name: '황금빛 밀밭의 별',
+    resident: '사막 여우 🦊',
+    description: '지구의 수많은 여우 중 하나였지만, 길들여짐을 통해 세상에 단 하나뿐인 특별한 존재가 된 여우가 머무는 따뜻한 별.',
+    quoteEn: '"It is only with the heart that one can see rightly; what is essential is invisible to the eye."',
+    quote: '"내 비밀은 이거야. 아주 간단해. 오직 마음으로 보아야만 정확하게 볼 수 있어. 가장 중요한 것은 눈에 보이지 않는 법이야."',
+    color: '#f59e0b', // 어린왕자의 머리칼을 닮은 황금빛 밀밭 색상
+    size: 65, top: '62%', left: '52%', // B612와 멀지 않은 곳에서 서로를 바라보도록 배치
   },
   {
     id: '325',
@@ -47,8 +57,8 @@ export const PLANETS = [
     description: '우주의 별들이 모두 자기 것이라 믿으며 끊임없이 숫자를 세는 상인의 별.',
     quoteEn: '"I concern myself with matters of consequence. I am a serious man."',
     quote: '"나는 진지한 사람이야. 쓸데없는 짓을 할 시간이 없어."',
-    color: '#94a3b8', // 회색빛
-    size: 60, top: '25%', left: '65%',
+    color: '#525861', // 회색빛
+    size: 60, top: '25%', left: '60%',
   },
   {
     id: '329',
@@ -68,7 +78,7 @@ export const PLANETS = [
     quoteEn: '"A geographer is too important to go loafing about."',
     quote: '"지리학자는 너무 중요해서 함부로 돌아다닐 수 없단다."',
     color: '#10b981', // 에메랄드빛
-    size: 70, top: '45%', left: '85%',
+    size: 70, top: '45%', left: '75%',
   },
   {
     id: 'Earth',
@@ -78,6 +88,6 @@ export const PLANETS = [
     quoteEn: '"What makes the desert beautiful is that somewhere it hides a well."',
     quote: '"사막이 아름다운 건, 어디엔가 오아시스를 감추고 있기 때문이야."',
     color: '#38bdf8', // 맑은 지구빛
-    size: 130, top: '15%', left: '80%',
+    size: 120, top: '15%', left: '75%',
   }
 ];

@@ -1,180 +1,227 @@
-// 🪐 따뜻하고 다정한 이야기체 폰트 불러오기
+// src/components/GuestbookForm.module.scss
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 
-// 🦊 사막 여우 테마 공통 변수
-$point-fox: #ff7e47;         // 사막의 노을을 닮은 따스한 여우빛 오렌지
-$star-gold: #f59e0b;         // 어린왕자의 금빛 머리카락과 별빛 옐로우
-$sand-cozy: #fffbf6;         // 포근하고 다정한 사막의 모래빛 (폼 배경)
-$text-main: #4338ca;         // 밤하늘의 푸른빛이 살짝 섞인 깊은 에메랄드 네이비 (혹은 부드러운 차콜)
-$text-sub: #64748b;          // 은은한 서브 텍스트 컬러
-$border-dreamy: #fcd34d;     // 은은한 노을빛을 품은 부드러운 테두리
+$point-fox: #ff7e47;         
+$star-gold: #f59e0b;         
+$sand-cozy: #fffbf6;         
+$text-main: #334155;         
+$text-sub: #64748b;          
+$border-dreamy: #fcd34d;     
 
-form {
-  font-family: 'Gowun Batang', serif; // 전체 폼에 동화 같은 서체 적용
+.formWrapper {
+  perspective: 1000px; // 약간의 입체감 부여
+}
+
+.envelopeForm {
+  font-family: 'Gowun Batang', serif;
   background-color: $sand-cozy;
-  padding: 36px 30px; // 위아래 여백을 살짝 넓혀 포근한 인상 부여
-  border-radius: 24px; // 모서리를 더 둥글고 부드럽게
+  padding: 45px 35px;
+  border-radius: 28px;
+  // ✉️ 편지 봉투 테두리를 연상시키는 고풍스러운 이중 보더 테두리
   border: 1px solid rgba($point-fox, 0.15);
+  outline: 6px double rgba($point-fox, 0.08);
+  outline-offset: -12px;
+  
   box-shadow: 
-    0 10px 30px rgba(255, 126, 71, 0.05),
+    0 20px 50px rgba(255, 126, 71, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
-  gap: 28px; // 요소 간의 간격을 살짝 넓혀 여유로운 느낌을 줌
-  color: #334155;
+  gap: 32px;
+  color: $text-main;
+  position: relative;
+  overflow: hidden;
 
   h2 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
-    margin: 0;
+    margin: 10px 0 0;
     text-align: center;
     color: $point-fox;
     letter-spacing: -0.5px;
-    
-    // 제목 뒤에 작은 별이 반짝이는 듯한 느낌의 텍스트 그림자
-    text-shadow: 0 2px 4px rgba($point-fox, 0.1);
+    text-shadow: 0 2px 5px rgba($point-fox, 0.12);
   }
 
-  // 1. 이모티콘 구역 (여우의 마음을 고르는 시간)
-  div {
+  // 1. 이모티콘 구역
+  .emojiSection {
     p { 
-      margin: 0 0 10px 0; 
+      margin: 0 0 14px 0; 
       font-weight: 700; 
       font-size: 14px; 
       text-align: center;
       color: $text-sub;
+      letter-spacing: 1px;
     }
-    div {
-      // 💡 Flex 대신 Grid로 변경
+    
+    .emojiGrid {
       display: grid;
-      // 화면 크기에 맞춰 35px 너비의 칸을 자동으로 채움
-      grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
-      gap: 12px;
-      justify-items: center; // 각 그리드 셀 안에서 가운데 정렬
+      grid-template-columns: repeat(8, 1fr);
+      gap: 10px;
+      background: rgba(#ffffff, 0.6);
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba($point-fox, 0.05);
       
       button {
         font-size: 26px;
         background: none;
         border: none;
         cursor: pointer;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         
         &:hover { 
-          transform: scale(1.3) rotate(5deg); 
+          transform: scale(1.15); 
         }
       }
     }
   }
 
-  // 2. 닉네임, 메세지 입력 필드 (어린왕자에게 보내는 편지지)
+  // 2. 입력 필드 공통
   .field {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 14px;
+    gap: 10px;
+    font-size: 15px;
     font-weight: 700;
     color: $text-sub;
 
-    input, textarea {
+    input {
       font-family: 'Gowun Batang', serif;
       width: 100%;
       background-color: #ffffff;
-      border: 1.5px solid rgba($point-fox, 0.2); // 딱딱한 회색 대신 은은한 살구빛 테두리
-      border-radius: 12px;
-      padding: 14px 18px;
+      border: 1.5px solid rgba($point-fox, 0.2);
+      border-radius: 14px;
+      padding: 16px 20px;
       font-size: 15px;
       box-sizing: border-box;
       outline: none;
       color: #1e293b;
       transition: all 0.3s ease;
 
-      &::placeholder {
-        color: #cbd5e1;
-      }
+      &::placeholder { color: #cbd5e1; }
 
-      // ⭐️ 포커스 시 별빛이 켜지듯 노란빛/오렌지빛 글로우 효과
       &:focus {
         border-color: $point-fox;
-        background-color: #ffffff;
         box-shadow: 
-          0 0 0 3px rgba($point-fox, 0.08),
-          0 2px 8px rgba($point-fox, 0.1);
+          0 0 0 4px rgba($point-fox, 0.08),
+          0 4px 12px rgba($point-fox, 0.1);
       }
     }
 
+    // 📝 진짜 가로 줄눈 편지지가 적용된 텍스트 영역
     textarea {
-      height: 120px;
-      resize: none; 
-      line-height: 1.6;
+      font-family: 'Gowun Batang', serif;
+      width: 100%;
+      height: 160px;
+      padding: 14px 20px;
+      font-size: 16px;
+      line-height: 32px; // 👈 줄 높이를 32px로 고정하고,
+      box-sizing: border-box;
+      outline: none;
+      color: #1e293b;
+      resize: none;
+      border: 1.5px solid rgba($point-fox, 0.2);
+      border-radius: 14px;
+      
+      // 👈 배경 그라데이션으로 32px마다 은은한 황금빛 모래 선을 그려줍니다.
+      background-image: linear-gradient(rgba(#000000, 0) 0%, rgba(#000000, 0) 97%, rgba($border-dreamy, 0.4) 97%, rgba($border-dreamy, 0.4) 100%);
+      background-size: 100% 32px;
+      background-color: #ffffff;
+      background-attachment: local; // 스크롤 시 줄무늬가 같이 따라 움직이도록 설정
+      
+      transition: all 0.3s ease;
+
+      &::placeholder { color: #cbd5e1; line-height: 1.6; }
+
+      &:focus {
+        border-color: $point-fox;
+        box-shadow: 
+          0 0 0 4px rgba($point-fox, 0.08),
+          0 4px 12px rgba($point-fox, 0.1);
+      }
+    }
+  }
+
+  // 아바타 프리뷰 영역
+  .avatarPreview {
+    text-align: center;
+    p { margin: 0 0 10px 0; font-size: 14px; font-weight: 700; color: $text-sub; }
+    .previewContainer {
+      display: inline-block;
+      padding: 10px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba($point-fox, 0.15);
+      animation: float 3s infinite ease-in-out;
     }
   }
 
   // 3. 캐릭터 선택 구역
-  strong { 
-    font-size: 14px; 
-    font-weight: 700;
-    display: block; 
-    margin-bottom: 10px; 
-    text-align: center; 
-    color: $text-sub;
-  }
-  
-  // 캐릭터 버튼들을 감싸는 div
-  div > div {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center; 
+  .characterSection {
+    strong { 
+      font-size: 14px; 
+      font-weight: 700;
+      display: block; 
+      margin-bottom: 15px; 
+      text-align: center; 
+      color: $text-sub;
+      letter-spacing: 0.5px;
+    }
+    
+    .avatarList {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center; 
 
-    button {
-      background: #ffffff;
-      border: 2px solid #f1f5f9;
-      border-radius: 16px;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      button {
+        background: #ffffff;
+        border: 2px solid #f1f5f9;
+        border-radius: 20px;
+        padding: 10px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
 
-      &:hover {
-        background: #fffbeb;
-        border-color: rgba($star-gold, 0.3);
-        transform: translateY(-2px); // 살짝 떠오르는 느낌
-      }
+        &:hover {
+          background: #fffbeb;
+          border-color: rgba($star-gold, 0.4);
+          transform: translateY(-3px) scale(1.03);
+        }
 
-      // 🦊 여우에게 길들여진(선택된) 캐릭터 카드 효과
-      &.selected {
-        border-color: $point-fox;
-        background: rgba($point-fox, 0.04);
-        box-shadow: 
-          0 4px 12px rgba($point-fox, 0.12),
-          0 0 0 3px rgba($point-fox, 0.05);
-        transform: translateY(-2px);
+        &.selected {
+          border-color: $point-fox;
+          background: rgba($point-fox, 0.04);
+          // 🦊 선택 시 은은하게 빛나는 황금 별빛 그림자 효과
+          box-shadow: 
+            0 8px 20px rgba($point-fox, 0.16),
+            0 0 0 4px rgba($point-fox, 0.06);
+          transform: translateY(-3px) scale(1.05);
+        }
       }
     }
   }
 
-  // 4. 최종 등록 버튼 (사막의 노을빛을 담은 버튼)
+  // 4. 최종 등록 버튼
   .submitBtn {
     font-family: 'Gowun Batang', serif;
     width: 100%;
-    height: 54px;
-    // 사막의 아름다운 석양을 표현한 그라데이션
+    height: 56px;
     background: linear-gradient(135deg, $point-fox 0%, #f59e0b 100%);
     color: white;
     border: none;
-    border-radius: 14px;
-    font-size: 16px;
+    border-radius: 16px;
+    font-size: 17px;
     font-weight: 700;
     cursor: pointer;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 14px rgba($point-fox, 0.3);
+    box-shadow: 0 6px 20px rgba($point-fox, 0.3);
 
     &:hover {
-      // 호버 시 노을빛이 더 화사하게 번지는 효과
       background: linear-gradient(135deg, #ff8f5e 0%, #ea580c 100%);
-      box-shadow: 0 6px 20px rgba($point-fox, 0.45);
-      transform: translateY(-1px);
+      box-shadow: 0 8px 25px rgba($point-fox, 0.45);
+      transform: translateY(-2px);
     }
     
     &:active {
@@ -183,34 +230,76 @@ form {
   }
 }
 
-// 📱 모바일 반응형
+// 부동 애니메이션 (미리보기 아바타 동동 떠 있는 효과)
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+// 📱 모바일 반응형 구역 수정
 @media (max-width: 768px) {
-  form {
-    padding: 24px 20px; // 폼 안쪽 여백 줄이기
-    gap: 20px;
-    border-radius: 20px;
+  .envelopeForm {
+    padding: 30px 20px;
+    gap: 24px;
+    border-radius: 22px;
 
-    h2 {
-      font-size: 20px; // 제목 크기 조절
+    h2 { font-size: 21px; }
+    
+    // 🌟 모바일 화면에 맞게 그리드 열 개수 조절
+    .emojiSection {
+      .emojiGrid { 
+        padding: 12px; 
+        // 🌟 [태블릿/일반 모바일]: 6열로 변경하여 예쁘게 정렬 (6 + 6 + 6 + 5 구성)
+        grid-template-columns: repeat(6, 1fr);
+        
+        button {
+          font-size: 22px; // 모바일에선 이모지 크기 살짝 축소
+        }
+      }
     }
-
-    div > div button {
-      font-size: 22px; // 이모티콘 크기 살짝 축소
-    }
-
+    
     .field {
-      input, textarea {
-        padding: 12px 14px;
-        font-size: 14px;
+      input { padding: 14px 16px; }
+      textarea { height: 130px; line-height: 28px; background-size: 100% 28px; }
+    }
+    
+    .submitBtn { height: 50px; font-size: 15px; }
+  }
+
+  .postCard {
+      padding: 16px 20px; 
+      border-radius: 16px;
+      gap: 8px 12px; // ✨ 그리드(Grid)의 가로세로 간격을 모바일에 맞게 축소!
+
+      .postCardHeader {
+        // 기존 마진은 지웠으므로 여기도 여백(margin-bottom) 속성이 있다면 삭제!
+        div {
+          gap: 8px;
+          strong { font-size: 15px; }
+          span { font-size: 12px; }
+        }
+        .deleteBtn { font-size: 12px; }
       }
-      textarea {
-        height: 100px; // 모바일에서는 텍스트 영역 높이를 살짝 줄임
+
+      .postMessage { font-size: 14px; }
+      
+      .avatarWrapper { 
+        img { 
+          width: 60px; // 
+          height: 60px; 
+        } 
       }
     }
+}
 
-    .submitBtn {
-      height: 48px;
-      font-size: 15px;
+// 📱 초소형 모바일 대응 (아이폰 SE 등 아주 작은 화면)
+@media (max-width: 380px) {
+  .envelopeForm {
+    .emojiSection {
+      .emojiGrid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
     }
   }
 }

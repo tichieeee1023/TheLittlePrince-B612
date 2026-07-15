@@ -16,7 +16,7 @@ $text-sub: #64748b;
   justify-content: center;
 
   .container {
-    max-width: 800px;
+    max-width: 1000px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@ $text-sub: #64748b;
   }
   
   .mainQuote {
-    font-size: 18px;
+    font-size: 20px;
     color: $text-sub;
     line-height: 1.8;
     font-style: italic;
@@ -62,7 +62,7 @@ $text-sub: #64748b;
       position: relative;
       display: inline-block;
       color: $text-main; // 노을빛 위에서도 글씨가 잘 읽히도록 진하게 보정
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
       margin-left: 6px;
       z-index: 1; 
@@ -109,7 +109,7 @@ $text-sub: #64748b;
       margin-bottom: 24px;
       .emoji { font-size: 28px; }
       h2 { 
-        font-size: 24px; 
+        font-size: 26px; 
         color: $point-fox; 
         margin: 0; 
         font-weight: 700;
@@ -118,13 +118,51 @@ $text-sub: #64748b;
 
     .content {
       p {
-        font-size: 16px;
+        font-size: 18px;
         color: $text-main;
         line-height: 2;
         margin-bottom: 16px;
         word-break: keep-all;
         &:last-child { margin-bottom: 0; }
         strong { color: $point-fox; }
+      }
+
+      // ✨ [추가할 부분] 영문 + 국문 명대사 박스 
+      .quoteBox {
+        margin: 28px 0;
+        padding: 24px 20px;
+        // 양옆으로 부드럽게 스며드는 배경 효과
+        background: linear-gradient(to right, transparent, rgba($point-fox, 0.04), transparent);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+
+        .quoteEn {
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-size: 21px;
+          color: $point-fox;
+          margin: 0;
+          text-align: center;
+          line-height: 1.5;
+          letter-spacing: 0.5px;
+        }
+
+        .quoteDivider {
+          width: 30px;
+          height: 1px;
+          background: rgba($point-fox, 0.2);
+        }
+
+        .quoteKo {
+          font-size: 17px;
+          color: $text-main;
+          margin: 0;
+          text-align: center;
+          strong { font-weight: 700; }
+        }
       }
     }
   }
@@ -180,8 +218,30 @@ $text-sub: #64748b;
 @media (max-width: 768px) {
   .aboutPage {
     padding-top: 100px;
+    
     .container { gap: 80px; }
-    .introSection .mainTitle { font-size: 32px; }
-    .storySection .card { padding: 35px 25px; }
+    
+    .introSection {
+      .mainTitle { font-size: 32px; }
+      
+      // ✨ 노을 이펙트와 서브 텍스트 크기 축소
+      .mainQuote {
+        font-size: 16px;
+        .sunsetEffect { font-size: 18px; margin-left: 4px; }
+      }
+    }
+    
+    .storySection .card { 
+      padding: 35px 25px; 
+      
+      // ✨ 명대사 박스 모바일 최적화
+      .content .quoteBox {
+        padding: 20px 16px;
+        margin: 20px 0;
+        
+        .quoteEn { font-size: 17px; line-height: 1.4; }
+        .quoteKo { font-size: 15px; }
+      }
+    }
   }
 }
