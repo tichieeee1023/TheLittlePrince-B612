@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Gowun+Batang:wght@400;700&display=swap');
+
+.openingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #0c0e17;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .starCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .titleBox {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    pointer-events: none; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; // ✨ 중앙 정렬 축 맞추기
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 68px; // 타이틀은 조금 더 과감하게 키웁니다
+      color: #fef08a; 
+      margin: 0;
+      text-shadow: 0 0 20px rgba(254, 240, 138, 0.4), 0 0 40px rgba(255, 126, 71, 0.2);
+      letter-spacing: 4px;
+    }
+
+    // ✨ 새로 추가된 빛나는 분리선 스타일
+    .divider {
+      height: 1px;
+      background-color: #fef08a;
+      margin: 28px 0;
+      box-shadow: 0 0 10px #fef08a;
+    }
+
+    p {
+      font-family: 'Gowun Batang', serif;
+      font-size: 16px; // 크기는 줄이고
+      color: #e2e8f0; // 색은 달빛처럼 은은하게
+      margin: 0;
+      letter-spacing: 6px; // ✨ 자간을 확 벌려서 영화 자막 느낌을 줍니다
+      font-weight: 400;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+// 모바일 대응
+@media (max-width: 768px) {
+  .openingOverlay .titleBox h1 {
+    font-size: 42px;
+  }
+  .openingOverlay .titleBox p {
+    font-size: 15px;
+  }
+}

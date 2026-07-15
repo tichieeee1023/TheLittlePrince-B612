@@ -1,0 +1,187 @@
+// src/components/About.module.scss
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Gowun+Batang:wght@400;700&display=swap');
+
+$point-fox: #ff7e47;         
+$star-gold: #f59e0b;         
+$bg-paper: #fdfcf8; 
+$text-main: #334155;         
+$text-sub: #64748b;          
+
+.aboutPage {
+  min-height: 100vh;
+  background-color: $bg-paper;
+  padding: 150px 20px 100px;
+  font-family: 'Gowun Batang', serif;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 150px; // ✨ 동화책의 여백미를 살리기 위해 150px로 조정!
+  }
+}
+
+// ✨ 공통 장식 요소
+.starIcon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  animation: twinkle 2.5s infinite ease-in-out;
+}
+
+.bookDivider {
+  text-align: center;
+  color: $point-fox;
+  opacity: 0.4;
+  letter-spacing: 8px;
+  font-size: 14px;
+}
+
+// ✨ 섹션 1: 인트로
+.introSection {
+  text-align: center;
+  
+  .mainTitle {
+    font-size: 44px;
+    color: $point-fox;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+  
+  .mainQuote {
+    font-size: 18px;
+    color: $text-sub;
+    line-height: 1.8;
+    font-style: italic;
+
+    // 🌅 대망의 노을 이펙트!
+    .sunsetEffect {
+      position: relative;
+      display: inline-block;
+      color: $text-main; // 노을빛 위에서도 글씨가 잘 읽히도록 진하게 보정
+      font-size: 20px;
+      font-weight: 700;
+      margin-left: 6px;
+      z-index: 1; 
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: -5px; left: -10px; right: -10px; bottom: -5px;
+        // 여우빛, 금빛, 핑크빛이 섞인 영롱한 노을 그라데이션
+        background: linear-gradient(45deg, rgba($point-fox, 0.4) 0%, rgba($star-gold, 0.6) 50%, rgba(#ff6b6b, 0.3) 100%);
+        z-index: -1; 
+        filter: blur(15px); // 부드럽게 번지도록 블러 처리
+        will-change: transform, filter, opacity;
+        animation: sunsetMove 8s infinite alternate ease-in-out; 
+      }
+    }
+  }
+}
+
+// ✨ 스토리 섹션 (카드 스타일)
+.storySection {
+  .card {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 50px 40px;
+    border: 1px solid rgba($point-fox, 0.1);
+    box-shadow: 0 15px 40px rgba($point-fox, 0.06);
+    position: relative;
+    
+    // 카드 안쪽의 우아한 장식 테두리 (은하수 모달에서 썼던 감성 연결)
+    &::after {
+      content: '';
+      position: absolute;
+      top: 15px; left: 15px; right: 15px; bottom: 15px;
+      border: 1px solid rgba($point-fox, 0.08);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .cardHeader {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      .emoji { font-size: 28px; }
+      h2 { 
+        font-size: 24px; 
+        color: $point-fox; 
+        margin: 0; 
+        font-weight: 700;
+      }
+    }
+
+    .content {
+      p {
+        font-size: 16px;
+        color: $text-main;
+        line-height: 2;
+        margin-bottom: 16px;
+        word-break: keep-all;
+        &:last-child { margin-bottom: 0; }
+        strong { color: $point-fox; }
+      }
+    }
+  }
+}
+
+// ✨ 파이널 섹션 (CTA)
+.finalSection {
+  text-align: center;
+  .finalCard {
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 28px;
+      color: $text-main;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    p {
+      font-size: 16px;
+      color: $text-sub;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .ctaBtn {
+      font-family: 'Gowun Batang', serif;
+      background: linear-gradient(135deg, $point-fox 0%, #f59e0b 100%);
+      color: white;
+      border: none;
+      border-radius: 18px;
+      padding: 18px 40px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba($point-fox, 0.25);
+    }
+  }
+}
+
+// ✨ 애니메이션
+@keyframes twinkle {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 10px $star-gold); }
+}
+
+// 🌅 바람에 일렁이는 듯한 생동감 넘치는 노을 애니메이션
+@keyframes sunsetMove {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.6; filter: blur(12px); }
+  50% { transform: scale(1.05) rotate(2deg); opacity: 1; filter: blur(18px); }
+  100% { transform: scale(1) rotate(-1deg); opacity: 0.7; filter: blur(14px); }
+}
+
+@media (max-width: 768px) {
+  .aboutPage {
+    padding-top: 100px;
+    .container { gap: 80px; }
+    .introSection .mainTitle { font-size: 32px; }
+    .storySection .card { padding: 35px 25px; }
+  }
+}

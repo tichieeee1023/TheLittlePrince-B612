@@ -1,24 +1,22 @@
-// 🪐 구글 폰트 불러오기 (영문 로고: 신비로운 세리프 / 메뉴: 다정한 고운바탕체)
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gowun+Batang:wght@400;700&display=swap');
 
-// 🦊 어린왕자와 여우 테마 공통 팔레트
-$deep-night: #0c0e17;        // 사막의 깊고 신비로운 밤하늘색
-$point-fox: #ff7e47;         // 노을빛을 품은 따스한 여우 오렌지색
-$star-gold: #fef08a;         // 반짝이는 별빛과 어린왕자의 금빛 머리카락
-$text-light: #f8fafc;        // 달빛처럼 하얀 메인 텍스트
-$text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
+$deep-night: #0c0e17;        
+$point-fox: #ff7e47;         
+$star-gold: #fef08a;         
+$text-light: #f8fafc;        
+$text-mist: #94a3b8;         
 
 .header {
   position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
-  background-color: rgba($deep-night, 0.6); 
-  backdrop-filter: blur(12px); 
-  border-bottom: 1px solid rgba($point-fox, 0.12);
+  height: 75px; // 💡 로고 높이에 맞춰 살짝 볼륨감 있게 변경
+  background-color: rgba($deep-night, 0.75); // 조금 더 묵직하게 밤하늘을 눌러줌
+  backdrop-filter: blur(16px); // 흐림 효과를 강화해 더 고급스럽게 변경
+  border-bottom: 1px solid rgba($point-fox, 0.18);
   z-index: 1000;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 
   .container {
     max-width: 1200px;
@@ -27,30 +25,73 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 24px;
 
     .logo {
       flex: 1;
-      font-family: 'Gowun Batang', serif; 
-      font-size: 22px;
-      font-weight: 700;
-      color: #f8fafc; 
-      text-decoration: none;
-      letter-spacing: 2px; 
       display: flex;
       align-items: center;
-      transition: all 0.3s ease;
+      gap: 12px; // SVG와 텍스트 사이 간격
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-      .highlight {
-        color: $point-fox; 
-        font-weight: 900;
-        margin-left: 8px;
-        font-family: sans-serif; 
+      // ✨ [추가] 로고 SVG 자체 스타일 및 애니메이션
+      .logoSvg {
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 0 4px rgba($point-fox, 0.2));
+
+        // 고리가 도는 느낌을 주는 대시 애니메이션
+        .planetRing {
+          stroke-dasharray: 200;
+          stroke-dashoffset: 0;
+          animation: ringWave 6s infinite linear;
+          transform-origin: 50px 58px;
+        }
+
+        // 우측 상단 별 깜빡임 애니메이션
+        .twinkleStar {
+          animation: starTwinkle 2.5s infinite ease-in-out;
+          transform-origin: 77px 25px;
+        }
+      }
+
+     .logoText {
+        font-family: 'Cormorant Garamond', serif; 
+        font-style: italic; // 전체적으로 우아하게 기울임
+        font-size: 24px;    
+        font-weight: 600;
+        color: $text-light; 
+        letter-spacing: 1px; 
+        transition: all 0.4s ease;
+        text-shadow: 
+          0 0 4px rgba($point-fox, 0.3),
+          0 0 12px rgba($point-fox, 0.1);
+
+        .highlight {
+          color: $point-fox; 
+          font-weight: 800;
+          margin-left: 4px;
+          font-family: 'Gowun Batang', sans-serif; 
+          font-size: 18px;
+          letter-spacing: 2px; 
+          vertical-align: middle; 
+        }
       }
 
       &:hover {
-        transform: scale(1.02); 
-        text-shadow: 0 0 12px rgba($point-fox, 0.6); 
+        transform: translateY(-1px);
+
+        .logoSvg {
+          transform: scale(1.1) rotate(8deg);
+          filter: drop-shadow(0 0 12px rgba($point-fox, 0.65));
+        }
+
+        .logoText {
+          color: #ffffff;
+          text-shadow: 
+            0 0 8px rgba($point-fox, 0.8),
+            0 0 20px rgba($point-fox, 0.4);
+        }
       }
     }
 
@@ -97,23 +138,40 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
       justify-content: flex-end; 
       display: flex;
       gap: 20px;
-      align-items: center; // 세로 중앙 정렬 보정
+      align-items: center; 
 
-      a {
-        position: relative;
+      .guestBox {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      // ✨ 아이콘 버튼 공통 스타일 추가
+      .iconBtn {
+        background: none;
+        border: none;
         color: $text-mist;
-        text-decoration: none;
-        font-size: 13px;
-        letter-spacing: -0.3px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        border-radius: 50%;
         transition: all 0.3s ease;
+        text-decoration: none;
+
+        span {
+          font-size: 24px; // 아이콘 크기 조절
+        }
 
         &:hover { 
-          color: $text-light; 
+          color: $text-light;
+          background-color: rgba($text-light, 0.08); // 살짝 번지는 달빛 효과
         }
 
         &.active {
           color: $point-fox;
-          font-weight: 800;
+          text-shadow: 0 0 8px rgba($point-fox, 0.4);
           
           &::after {
             content: '';
@@ -130,7 +188,6 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
         }
       }
 
-      // 🪐 [추가] 로그인 성공 시 닉네임 박스 레이아웃
       .userBox {
         display: flex;
         align-items: center;
@@ -143,27 +200,17 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
           letter-spacing: -0.3px;
 
           strong {
-            color: $star-gold; // 닉네임은 영롱한 금빛 포인트
+            color: $star-gold; 
             font-weight: 700;
             text-shadow: 0 0 6px rgba($star-gold, 0.4);
           }
         }
 
-        .logoutBtn {
-          background: none;
-          border: 1px solid rgba($text-mist, 0.3);
-          color: $text-mist;
-          padding: 5px 12px;
-          border-radius: 20px;
-          font-size: 12px;
-          font-family: 'Gowun Batang', serif;
-          cursor: pointer;
-          transition: all 0.2s ease;
-
+        // 로그아웃 아이콘 버튼 전용 호버 스타일 적용
+        .iconBtn {
           &:hover {
-            border-color: #ef4444; // 호버 시 부드러운 경고 붉은빛
             color: #ef4444;
-            background-color: rgba(#ef4444, 0.05);
+            background-color: rgba(#ef4444, 0.08);
           }
         }
       }
@@ -171,23 +218,41 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
   }
 }
 
+// ✨ 로고 전용 마이크로 애니메이션 추가 ✨
+@keyframes ringWave {
+  0% { transform: rotate(-15deg) scale(1); opacity: 0.9; }
+  50% { transform: rotate(-13deg) scale(1.02); opacity: 1; }
+  100% { transform: rotate(-15deg) scale(1); opacity: 0.9; }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(0.8); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 4px $star-gold); }
+}
+
 @keyframes starBlink {
   0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(0.8); }
   50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
 }
 
-// 📱 [업데이트] 모바일 반응형 완벽 대응 통합
 @media (max-width: 768px) {
   .header {
-    height: 60px; 
+    height: 65px; 
 
     .container {
-      padding: 0 14px;
+      padding: 0 16px;
 
       .logo {
-        font-size: 17px; 
-        letter-spacing: 1px;
-        .highlight { margin-left: 4px; }
+        gap: 8px;
+        .logoSvg {
+          width: 34px;
+          height: 34px;
+        }
+        .logoText {
+          font-size: 16px; 
+          letter-spacing: 0.5px;
+          .highlight { margin-left: 4px; }
+        }
       }
 
       .nav {
@@ -201,13 +266,7 @@ $text-mist: #94a3b8;         // 은은한 안개빛 서브 텍스트
 
         .userBox {
           gap: 8px;
-          .welcomeMsg {
-            font-size: 12px;
-          }
-          .logoutBtn {
-            padding: 4px 8px;
-            font-size: 11px;
-          }
+          .welcomeMsg { font-size: 12px; }
         }
       }
     }

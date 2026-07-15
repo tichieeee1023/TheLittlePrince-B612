@@ -1,0 +1,41 @@
+// src/components/ScrollProgress.module.scss
+
+$point-fox: #ff7e47;
+$star-gold: #fef08a;
+
+.progressContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px; // 아주 얇고 세련된 두께
+  background: transparent;
+  z-index: 99999; // 화면의 어떤 요소보다도 무조건 제일 위에 떠 있도록 설정
+  pointer-events: none; // 클릭을 방해하지 않게 투명 망토 처리
+}
+
+.progressBar {
+  height: 100%;
+  // 꼬리는 투명하게 시작해서 머리 쪽으로 갈수록 금빛으로 밝아지는 그라데이션
+  background: linear-gradient(90deg, transparent, rgba($point-fox, 0.7), $star-gold);
+  transform-origin: 0%; // ✨ 왼쪽 끝(0%)을 기준으로 막대가 길어지도록 설정
+  position: relative;
+  box-shadow: 0 0 12px rgba($star-gold, 0.4);
+
+  .starHead {
+    position: absolute;
+    top: 50%;
+    right: 0; // 진행 바의 맨 끝부분에 위치
+    transform: translateY(-50%) translateX(50%); // 정중앙에 걸치도록 미세 조정
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    
+    // 별똥별 머리의 영롱한 다중 빛 번짐(Glow) 효과
+    box-shadow:
+      0 0 8px #ffffff,
+      0 0 15px $star-gold,
+      0 0 25px $point-fox;
+  }
+}
