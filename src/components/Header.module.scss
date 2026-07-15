@@ -235,56 +235,87 @@ $text-mist: #94a3b8;
   50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
 }
 
+// 📱 [업데이트] 모바일 및 극소형 디바이스 반응형 완벽 대응
 @media (max-width: 768px) {
   .header {
-    height: 60px; // 모바일에서는 높이를 살짝 더 얄쌍하게
+    height: 3.75rem; // 60px -> 3.75rem
 
     .container {
-      padding: 0 12px; // 좌우 여백을 줄여 공간 확보
+      padding: 0 0.75rem; // 좌우 여백 유연화
 
       .logo {
-        gap: 6px;
+        gap: 0.375rem;
         
         .logoSvg {
-          width: 26px; // 로고 아이콘 크기 축소
-          height: 26px;
+          width: 1.625rem; // 26px -> 1.625rem
+          height: 1.625rem;
         }
 
         .logoText {
-          // ✨ 핵심 마법: 'The Little Prince' 텍스트를 모바일에서 숨김!
           font-size: 0; 
           letter-spacing: 0;
-          text-shadow: none; // 그림자도 깔끔하게 제거
+          text-shadow: none;
 
           .highlight {
-            font-size: 20px; // 'B612' 텍스트 크기만 되살리기!
-            margin-left: 0;  // 폰트가 0이 되었으니 간격도 초기화
+            font-size: 1.25rem; // 20px -> 1.25rem
           }
         }
       }
 
-      // 네비게이션 메뉴 간격 압축
+      // ✨ 중앙 메뉴 내비게이션 최적화 (글자 떨어짐 절대 방지)
       .nav {
-        gap: 14px; 
-        a { font-size: 14px; }
+        gap: 0.75rem; // 간격을 유연하게 축소 (12px -> 0.75rem)
+        margin: 0 0.5rem;
+
+        a {
+          font-size: 0.875rem; // 14px -> 0.875rem
+          padding: 0.25rem 0.125rem;
+          white-space: nowrap; // 💡 글자가 절대 아래로 쪼개져 떨어지지 않도록 설정!
+          word-break: keep-all;
+        }
       }
 
-      // 우측 아이콘 버튼 공간 확보
+      // ✨ 우측 인증 영역 최적화
       .auth {
-        gap: 8px;
-        
-        .iconBtn {
-          padding: 4px;
-          span { font-size: 20px; } // 구글 아이콘 크기 축소
-        }
+        gap: 0.5rem;
 
         .userBox {
-          gap: 6px;
-          .welcomeMsg { 
-            // 'OO님 로그인 중' 텍스트도 길어질 수 있으니 모바일에선 이름만 표시
-            font-size: 0; 
-            strong { font-size: 13px; } 
+          gap: 0.375rem;
+
+          .welcomeMsg {
+            display: none; // 모바일 극소형 화면 공간 확보를 위해 웰컴 메시지 숨김
           }
+        }
+
+        .guestBox {
+          gap: 0.375rem;
+        }
+
+        // 아이콘 버튼 크기 최적화
+        .iconBtn {
+          width: 2rem;  // 32px -> 2rem
+          height: 2rem;
+          
+          span {
+            font-size: 1.25rem; // 아이콘 크기 살짝 조정
+          }
+        }
+      }
+    }
+  }
+}
+
+// 📱 아이폰 SE 등 극소형 화면(360px 이하)을 위한 마이크로 미세 조정
+@media (max-width: 360px) {
+  .header {
+    .container {
+      padding: 0 0.5rem;
+
+      .nav {
+        gap: 0.5rem; // 메뉴 사이 간격을 한 번 더 조여줌
+        
+        a {
+          font-size: 0.8125rem; // 글씨 크기를 아주 미세하게 줄여 겹침 방지
         }
       }
     }
